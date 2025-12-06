@@ -1,0 +1,12 @@
+create table employee(
+nic VARCHAR(50) primary key,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+phone VARCHAR(15),
+email VARCHAR(80),
+address VARCHAR(200),
+role VARCHAR(50),
+department_id varchar(5) references department(department_id),
+basic_salary DECIMAL(10,2),
+joined_date DATE
+);
