@@ -1,0 +1,9 @@
+int id = Integer.parseInt(txtNIC.getText());
+
+    EmployeeCantraller controller = new EmployeeCantraller();
+
+    if (controller.deleteEmployee(id)) {
+        JOptionPane.showMessageDialog(this, "Employee Deleted Successfully");
+    } else {
+        JOptionPane.showMessageDialog(this, "Delete Failed");
+    }
