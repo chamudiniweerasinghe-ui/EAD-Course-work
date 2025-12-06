@@ -1,0 +1,67 @@
+Connection conn = DBConnection.getConnection();
+    public boolean saveEmployee(EmployeeModel emp) {
+
+        try {
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO employee (nic, first_name, last_name, phone, email, address, role, department_id, basic_salary, joined_date) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, emp.getnic());
+            pst.setString(2, emp.getFirstName());
+            pst.setString(3, emp.getLastName());
+            pst.setString(4, emp.getPhone());  
+            pst.setString(5, emp.getEmail());
+            pst.setString(6, emp.getAddress());
+            pst.setString(7, emp.getRole());
+            pst.setString(8, emp.getDepartmentId());
+            pst.setDouble(9, emp.getBasicSalary());
+            pst.setString(10, emp.getJoinedDate());
+            
+
+            return pst.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            System.out.println("Save Error: " + e);
+            return false;
+        }
+    }
+    
+    public boolean updateEmployee(EmployeeModel emp) {
+
+        String sql = "UPDATE employee SET first_name=?, last_name=?, phone=?, email=?, address=?, role=?, department_id=?, basic_salary=?, joined_date=? WHERE nic=?";
+                   
+
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, emp.getFirstName());
+            pst.setString(2, emp.getLastName());
+            pst.setString(3, emp.getPhone());
+            pst.setString(4, emp.getEmail());
+            pst.setString(5, emp.getAddress());
+            pst.setString(6, emp.getRole());
+            pst.setString(7, emp.getDepartmentId());
+            pst.setDouble(8, emp.getBasicSalary());
+            pst.setString(9, emp.getJoinedDate());
+            pst.setString(10, emp.getnic());
+            
+
+            return pst.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            System.out.println("Update Error: " + e);
+            return false;
+        }
+    }
+    
+    public boolean deleteEmployee(int employeeId) {
+
+        String sql = "DELETE FROM employee WHERE nic=?";
+
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, employeeId);
+
+            return pst.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            System.out.println("Delete Error: " + e);
+            return false;
+        }
+    }
