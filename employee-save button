@@ -1,0 +1,20 @@
+EmployeeModel emp = new EmployeeModel(
+        txtNIC.getText(),
+        txtFName.getText(),
+        txtLName.getText(),
+        txtPhone.getText(),
+        txtEmail.getText(),
+        txtAddress.getText(),
+        cmbRole.getSelectedItem().toString(),
+        txtDID.getText(),
+        Double.parseDouble(txtBasicsalary.getText()),
+        txtJonedDate.getText()
+    );
+
+    EmployeeCantraller controller = new EmployeeCantraller();
+
+    if (controller.saveEmployee(emp)) {
+        JOptionPane.showMessageDialog(this, "Employee Saved Successfully");
+    } else {
+        JOptionPane.showMessageDialog(this, "Save Failed");
+    }
